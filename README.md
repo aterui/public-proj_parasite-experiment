@@ -19,6 +19,7 @@ DOI: <https://doi.org/10.1007/s10201-017-0514-2>
     and condition factor
 -   `figure_growth.R` script for the relationship between condition
     factor and dominance
+-   `figure_histogram` script for body size/wet weight histograms
 -   `inits_model_aqua.R` script for running a jags model
 -   `model_aqua` script for a jags model
 -   `data_fmt/`
