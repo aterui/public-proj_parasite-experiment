@@ -1,10 +1,18 @@
-# Data load
-d	<- read.csv("aquariumFinal.csv")
-d	<- d[d$treatment!="M",]
+# setup -------------------------------------------------------------------
 
-library(rvg)
+rm(list = ls())
+pacman::p_load(tidyverse,
+               rvg)
 
-pdf(file="Fig1_R2.pdf", 8, 7)
+# data load ---------------------------------------------------------------
+
+d	<- read_csv("data_fmt/data_aquarium_fmt.csv")
+
+
+# plot --------------------------------------------------------------------
+
+pdf(file="output/figure_1.pdf", 8, 7)
+
 par(mfrow=c(2,2), mar=c(3,5,3,3), oma=c(2,2,2,1))
 ## FL ##
   xmax <- 110; xmin <- 65; ymax <- 18
@@ -65,4 +73,5 @@ par(mfrow=c(2,2), mar=c(3,5,3,3), oma=c(2,2,2,1))
   mtext("Wet mass (g)", 1, line=3)
 mtext("Frequency", 2, outer=T)
 mtext("Figure 1 Ooue et al.", 3, outer=T)
+
 dev.off()
