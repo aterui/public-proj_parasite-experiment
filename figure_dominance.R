@@ -11,16 +11,17 @@ source("function_predict_r.R")
 
 df_aqua <- read_csv("data_fmt/data_aquarium_fmt.csv") %>% 
  mutate(condition_factor = W0 * 100 / L0^3,
-        block = paste0(treatment, aquarium))
+        block = paste0(treatment, aquarium),
+        scl_cf = c(scale(condition_factor)))
 
 
 # prediction --------------------------------------------------------------
 
-m <- glmer(dominance ~ condition_factor + (1 | factor(block)),
+m <- glmer(dominance ~ scl_cf + (1 | block),
            family = binomial,
            data = df_aqua)
 fit <- predictR(m,
-                f_var = "condition_factor")
+                f_var = "scl_cf")
 
 
 # plot --------------------------------------------------------------------
@@ -28,7 +29,7 @@ fit <- predictR(m,
 pdf(file="output/figure_s2.pdf", 6, 6)
 
 par(mar=c(5,6,4,3))
-plot(dominance ~ condition_factor,
+plot(dominance ~ scl_cf,
      data = df_aqua,
      axes = F,
      ann = F,
@@ -46,6 +47,6 @@ box(bty = "l")
 mtext("Initial condition factor K", 1, line = 3)
 mtext("Probability of being dominant", 2, line = 4)
 LTY <- c(1,2,2)
-for(i in 1:3){ lines(fit[,"condition_factor"], fit[,i], lty=LTY[i]) }
+for(i in 1:3){ lines(fit[,"scl_cf"], fit[,i], lty=LTY[i]) }
 
 dev.off()
