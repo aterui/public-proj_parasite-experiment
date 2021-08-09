@@ -37,7 +37,7 @@ DOI: <https://doi.org/10.1007/s10201-017-0514-2>
         -   W0: wet weight at day 0 (g)
         -   W50: wet weight at day 50 (g)
         -   W70: wet weight at day 70 (g)
-        -   dominance: dominance status. One if dominant otherwise
-            subordinate
+        -   dominance: dominance status at day 68 and 69. One if
+            dominant otherwise subordinate
     -   `2017-01-18W50re.csv` JAGS estimates at day 50
     -   `2017-01-18W70re.csv` JAGS estimates at day 70
